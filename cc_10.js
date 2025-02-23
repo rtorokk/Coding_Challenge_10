@@ -24,11 +24,11 @@ console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, 
 // Task 2: Creating an Order Class
 
 class Order { // Creating a class order
-    constructor(orderId, product, quantity) {
-        this.orderId = orderId;
-        this.product = product;
-        this.quantity = quantity;
-        this.product.updateStock(quantity);
+    constructor(orderId, product, quantity) {// Setting up constructor
+        this.orderId = orderId;// Setting up orderId
+        this.product = product;// Setting up product
+        this.quantity = quantity;// Setting up quantity
+        this.product.updateStock(quantity);// Updating the stock
     }
     getOrderDetails() {
         return `Order ID: ${this.orderId}, Product: ${this.product.name}, Quantity: ${this.quantity}, Total Price: $${this.product.price * this.quantity}`;
@@ -63,6 +63,10 @@ class Inventory { // Creating a class inventory
     listOrders() { // Creating a method listOrders for Task 4
         this.orders.forEach(order => console.log(order.getOrderDetails())); // Listing the orders
     }
+    restockProduct(productId, quantity) { // Creating a method restockProduct for Task 5
+        let product = this.products.find(product => product.id === productId); // Finding the product
+        product.stock += quantity; // Restocking the product
+    }
 };
 
 const inventory = new Inventory(); // Creating a new inventory
@@ -73,3 +77,7 @@ inventory.listProducts(); // Expected output: "Product: Laptop, ID: 101, Price: 
 inventory.placeOrder(601, prod1, 2); // Placing an order
 inventory.listOrders(); // Expected output: "Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400"
 console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3"
+
+// Task 5: Implementing Product Restocking
+inventory.restockProduct(101, 5); // Restocking the product
+console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 8"
