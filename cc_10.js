@@ -38,3 +38,21 @@ class Order { // Creating a class order
 const order1 = new Order(501, prod1, 2);
 console.log(order1.getOrderDetails()); // Expected output: "Order ID: 501, Product: Laptop, Quantity: 2, Total Price: $2400"
 console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5"
+
+// Task 3: Creating an Invenotry Class
+
+class Inventory { // Creating a class inventory
+    constructor() {
+        this.products = [];// Setting up products
+    }
+    addProduct(product) { // Creating a method addProduct
+        this.products.push(product); // Adding product
+    }
+    listProducts() { // Creating a method listProducts
+        return this.products.forEach(product => console.log(product.getDetails())); // Listing the products
+    }
+}
+
+const inventory = new Inventory(); // Creating a new inventory
+inventory.addProduct(prod1); // Adding product
+inventory.listProducts(); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5"
