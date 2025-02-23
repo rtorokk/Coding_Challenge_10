@@ -44,6 +44,7 @@ console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, 
 class Inventory { // Creating a class inventory
     constructor() {
         this.products = [];// Setting up products
+        this.orders = [];// Setting up orders
     }
     addProduct(product) { // Creating a method addProduct
         this.products.push(product); // Adding product
@@ -51,8 +52,24 @@ class Inventory { // Creating a class inventory
     listProducts() { // Creating a method listProducts
         return this.products.forEach(product => console.log(product.getDetails())); // Listing the products
     }
+    placeOrder(orderId, product, quantity) { // Creating a method placeOrder for Task 4
+        if (product.stock >= quantity) { // Checking if the stock is enough
+            let order = new Order(orderId, product, quantity); // Creating a new order
+            this.orders.push(order); // Adding the order
+        } else {
+            return "Insufficient stock"; // If the stock is not enough
 }
+    }
+    listOrders() { // Creating a method listOrders for Task 4
+        this.orders.forEach(order => console.log(order.getOrderDetails())); // Listing the orders
+    }
+};
 
 const inventory = new Inventory(); // Creating a new inventory
 inventory.addProduct(prod1); // Adding product
 inventory.listProducts(); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 5"
+
+// Task 4: Implementing Order Management
+inventory.placeOrder(601, prod1, 2); // Placing an order
+inventory.listOrders(); // Expected output: "Order ID: 601, Product: Laptop, Quantity: 2, Total Price: $2400"
+console.log(prod1.getDetails()); // Expected output: "Product: Laptop, ID: 101, Price: $1200, Stock: 3"
